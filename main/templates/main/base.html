@@ -35,11 +35,12 @@
       <a href="/kolegiji">Kolegiji</a>
       <a href="/predavaci">Predavači</a>
       <a href="/obavijesti">Obavijesti</a>
-      <div style="float: right">
+      <div style="float: right; color: white">
         {% if user.is_authenticated %}
-        <span style="color: red"
-          >{{ user.first_name }} {{ user.last_name }}</span
-        >
+        <span>{{ user.first_name }} {{ user.last_name }}</span>
+        {% if user.is_staff %}
+        <span>(Administrator)</span>{% else %}<span>(Predavač)</span>
+        {% endif %}
         <a href="/logout">Odjava</a>
         {% else %}
         <a href="/login">Prijava</a>
