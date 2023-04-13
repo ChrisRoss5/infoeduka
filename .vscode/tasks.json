@@ -9,7 +9,8 @@
       "command": "python manage.py runserver",
       "runOptions": {
         "runOn": "folderOpen"
-      }
+      },
+      "problemMatcher": []
     }
   ]
 }

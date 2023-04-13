@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/favicon.png"
+      type="image/png"
+    />
+    <!-- TODO! dodati ako bude potrebe -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="main.css" /> -->
+    <style>
+      body {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      nav {
+        background-color: black;
+      }
+    </style>
+    <title>{% block title %}Infoeduka{% endblock %}</title>
+  </head>
+  <body>
+    <nav>
+      <img
+        src="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/logo-algebra.svg"
+        alt="logo"
+      />
+      <a href="/kolegiji">Kolegiji</a>
+      <a href="/predavaci">Predavači</a>
+      <a href="/obavijesti">Obavijesti</a>
+      <div style="float: right">
+        {% if user.is_authenticated %}
+        <span style="color: red"
+          >{{ user.first_name }} {{ user.last_name }}</span
+        >
+        <a href="/logout">Odjava</a>
+        {% else %}
+        <a href="/login">Prijava</a>
+        {% endif %}
+      </div>
+    </nav>
+    {% block content %}{% endblock %}
+  </body>
+</html>
