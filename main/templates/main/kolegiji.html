@@ -1,2 +1,18 @@
 {% extends 'main/base.html' %}
-{% block content %}Kolegiji{% endblock content %}
+{% block content %}
+  {% if not kolegiji %}
+  Nema upisanih kolegija.
+  {% endif %}
+
+  {% if user.is_staff %}
+  <a href="/admin/main/kolegij">Uređivanje</a>
+  {% endif %}
+
+  {% for kolegij in kolegiji %}
+  <div style="border: 1px solid black;">
+    <div>Naziv kolegija: {{ kolegij }}</div>
+    Predavaci:
+    {{ kolegij.predavaci.all|join:", " }}
+  </div>
+  {% endfor %}
+{% endblock content %}

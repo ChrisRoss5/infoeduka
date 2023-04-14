@@ -16,12 +16,12 @@
       body {
         margin: 0;
       }
-      a {
-        text-decoration: none;
-        color: white;
-      }
       nav {
         background-color: black;
+      }
+      nav a {
+        text-decoration: none;
+        color: white;
       }
     </style>
     <title>{% block title %}Infoeduka{% endblock %}</title>
@@ -32,9 +32,9 @@
         src="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/logo-algebra.svg"
         alt="logo"
       />
+      <a href="/obavijesti">Obavijesti</a>
       <a href="/kolegiji">Kolegiji</a>
       <a href="/predavaci">Predavači</a>
-      <a href="/obavijesti">Obavijesti</a>
       <div style="float: right; color: white">
         {% if user.is_authenticated %}
         <span>{{ user.first_name }} {{ user.last_name }}</span>
