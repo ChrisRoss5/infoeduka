@@ -27,13 +27,14 @@
     <title>{% block title %}Infoeduka{% endblock %}</title>
   </head>
   <body>
+    {% if user.is_authenticated %}
     <nav>
       <img
         src="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/logo-algebra.svg"
         alt="logo"
       />
       <a href="/obavijesti">Obavijesti</a>
-      <a href="/kolegiji">Kolegiji</a>
+      <a href="/kolegiji">{{ user.is_staff|yesno:"Kolegiji,Moji kolegiji" }}</a>
       <a href="/predavaci">Predavači</a>
       <div style="float: right; color: white">
         {% if user.is_authenticated %}
@@ -47,6 +48,7 @@
         {% endif %}
       </div>
     </nav>
+    {% endif %}
     {% block content %}{% endblock %}
   </body>
 </html>

@@ -14,7 +14,7 @@ Nakon izmjene modela potrebno je izbrisati bazu i započeti iznova.
 
 ### Korisnici
 
-Predavaci su `Useri`.
+Predavači su `Useri`.
 
 Administratori su `Superuseri` (`Useri` sa `is_staff=True` i `is_superuser=True`)
 

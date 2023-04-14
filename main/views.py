@@ -27,7 +27,11 @@ def obavijesti_nova(request):
 
 @login_required(login_url="/login")
 def kolegiji(request):
-    kolegiji = Kolegij.objects.all()
+    kolegiji = (
+        Kolegij.objects.filter(predavaci__in=[request.user])
+        if not request.user.is_staff
+        else Kolegij.objects.all()
+    )
     return render(request, "main/kolegiji.html", {"kolegiji": kolegiji})
 
 
