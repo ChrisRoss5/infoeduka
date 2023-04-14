@@ -1,23 +1,22 @@
-{% extends 'main/base.html' %}
-{% block content %}
-  {% if not obavijesti %}
-  Nema upisanih obavijesti.
+{% extends 'main/base.html' %} {% block content %} {% if not obavijesti %} Nema
+upisanih obavijesti. {% endif %} 
+<a href="/obavijesti-nova">Unesi obavijest</a>
+{% for obavijest in obavijesti reversed %}
+<div style="border: 1px solid black">
+  Naziv: {{ obavijest.naziv }}<br />
+  Opis: {{ obavijest.opis }}<br />
+  Datum objave: {{ obavijest.datum_objave }}<br />
+  Datum isteka: {{ obavijest.datum_isteka }}<br />
+  Autor: {{ obavijest.autor }}<br />
+  Kolegij: {{ obavijest.kolegij }}<br />
+  {% if user.is_staff or obavijest.autor == user %}
+  <a
+    href="obavijesti/obrisi/{{obavijest.id}}"
+    onClick="return confirm('Potvrdi brisanje obavijesti?')"
+  >Obriši obavijest</a>
+  <a
+    href="obavijesti/uredi/{{obavijest.id}}"
+  >Uredi obavijest</a>
   {% endif %}
-
-  {% if user.is_staff %}
-  <a href="/admin/main/obavijest">Uređivanje</a>
-  {% else %}
-  <a href="/obavijesti-nova">Unesi obavijest</a>
-  {% endif %}
-
-  {% for obavijest in obavijesti %}
-  <div style="border: 1px solid black;">
-    Naziv: {{ obavijest.naziv }}<br>
-    Opis: {{ obavijest.opis }}<br>
-    Datum objave: {{ obavijest.datum_objave }}<br>
-    Datum isteka: {{ obavijest.datum_isteka }}<br>
-    Autor: {{ obavijest.autor }}<br>
-    Kolegij: {{ obavijest.kolegij }}<br>
-  </div>
-  {% endfor %}
-{% endblock content %}
+</div>
+{% endfor %} {% endblock content %}

@@ -1,18 +1,17 @@
-{% extends 'main/base.html' %}
-{% block content %}
-  {% if not predavaci %}
-  Nema upisanih predavača.
+{% extends 'main/base.html' %} {% block content %} {% if not predavaci %} Nema
+upisanih predavača. {% endif %} {% if user.is_staff%}
+<a href="predavaci/unesi">Unesi predavaca</a>
+{% endif %} {% for predavac in predavaci %}
+<div style="border: 1px solid black">
+  {{ predavac.first_name }} {{ predavac.last_name }}
+  <br />
+  Email: {{ predavac.email }} {% if user.is_staff%}
+  <a
+    href="predavaci/obrisi/{{predavac.id}}"
+    onClick="return confirm('Potvrdi brisanje obavijesti?')"
+    >Obriši predavaca</a
+  >
+  <a href="predavaci/uredi/{{predavac.id}}">Uredi predavaca</a>
   {% endif %}
-
-  {% if user.is_staff %}
-  <a href="/admin/auth/user">Uređivanje</a>
-  {% endif %}
-
-  {% for predavac in predavaci %}
-  <div style="border: 1px solid black;">
-    {{ predavac.first_name }}  {{ predavac.last_name }}
-    <br>
-    Email: {{ predavac.email }}
-  </div>
-  {% endfor %}
-{% endblock content %}
+</div>
+{% endfor %} {% endblock content %}

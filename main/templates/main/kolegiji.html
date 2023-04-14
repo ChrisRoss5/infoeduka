@@ -5,7 +5,7 @@
   {% endif %}
 
   {% if user.is_staff %}
-  <a href="/admin/main/kolegij">Uređivanje</a>
+  <a href="kolegij/uredi/">Unesi kolegij</a>
   {% endif %}
 
   {% for kolegij in kolegiji %}
@@ -13,6 +13,15 @@
     <div>Naziv kolegija: {{ kolegij }}</div>
     Predavaci:
     {{ kolegij.predavaci.all|join:", " }}
+    {% if user.is_staff %}
+  <a
+    href="kolegij/obrisi/{{kolegij.id}}"
+    onClick="return confirm('Potvrdi brisanje kolegija?')"
+  >Obriši kolegij</a>
+  <a
+    href="kolegij/uredi/{{kolegij.id}}"
+  >Uredi kolegij</a>
+  {% endif %}
   </div>
   {% endfor %}
 {% endblock content %}
