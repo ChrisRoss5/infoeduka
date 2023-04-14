@@ -1,8 +1,9 @@
 ## Instalacija
 
 Potreban je Python 3.8 ili noviji za Django 4.2. Više na: [How to install Django](https://docs.djangoproject.com/en/4.2/topics/install/)
+
 ```
-python -m pip install Django==4.2
+pip install -r requirements.txt
 ```
 
 ## Pokretanje
@@ -17,7 +18,6 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 Nakon izmjene modela najlakše je izbrisati bazu i migracije te započeti iznova.
-
 
 ## Korisnici
 
