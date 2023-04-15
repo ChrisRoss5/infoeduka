@@ -1,8 +1,70 @@
 {% extends 'main/base.html' %}
 {% block content %}
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button>Unesi</button>
-  </form>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  #form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+  form {
+    background: #fff;
+    min-width: 300px;
+    border-radius: 15px;
+    box-shadow: 15px 15px 42px -12px rgba(115, 115, 115, 1);
+  }
+  label[for="id_opis"] {
+    display: block;
+    margin-bottom: 10px
+  }
+  #form-title {
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    padding: 20px 0;
+    border-radius: 15px;
+    background: linear-gradient(339deg, #fd841f, #e14d2a,#cd104d, #9c2c77, #cd104d, #e14d2a, #fd841f);
+    background-position: 0 0;
+    background-size: 200% 200%;
+    animation: animate-title 1s forwards;
+  }
+  @keyframes animate-title {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+  #form-body {
+    padding: 0 20px 20px 20px;
+  }
+  form input, form select, form textarea {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    box-sizing: border-box;
+    padding: 5px 14px;
+    outline: none;
+    box-shadow: 1px 1px 10px -5px #7d0000;
+    border-radius: 15px;
+    resize: none;
+  }
+</style>
+  <div id="form-container">
+    <form method="post">
+      <div id="form-title">{{ form_title }}</div>
+      <div id="form-body">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="cool-button">{{ button_action }}</button>
+      </div>
+    </form>
+  </div>
 {% endblock content %}

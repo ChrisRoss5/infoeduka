@@ -12,10 +12,14 @@
     <link rel="stylesheet" href="main.css" /> -->
   <style>
     body {
+      font-family: sans-serif;
       margin: 0;
       --custombg: linear-gradient(339deg, #fd841f 0%, #e14d2a 40%, #cd104d 68%, #9c2c77 100%);
+      background-color: rgb(240, 240, 240);
     }
-
+    input, select, textarea, button {
+      font-family: sans-serif;
+    }
     nav {
       display: flex;
       justify-content: space-between;
@@ -45,24 +49,23 @@
 
     .button {
       margin-left: 20px;
-      padding: 0 5px 4px;
       position: relative;
     }
 
     .button::after {
       content: "";
       position: absolute;
-      top: 100%;
-      width: 0%;
-      left: 0;
+      top: calc(100% + 3px);
+      right: 50%;
+      left: -3px;
       height: 2px;
       background: var(--custombg);
-      transition: 250ms width, 250ms opacity;
+      transition: 250ms right, 250ms opacity;
       opacity: 0;
     }
 
     .button:hover::after, .button.active::after {
-      width: 100%;
+      right: -3px;
       opacity: 1;
     }
 
@@ -70,6 +73,62 @@
       color: #fd841f;
     }
 
+    .cool-button {
+      display: block;
+      background: linear-gradient(339deg, #fd841f, #e14d2a,#cd104d, #9c2c77, #cd104d, #e14d2a, #fd841f);
+      background-position: 0 0;
+      background-size: 200% 200%;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      margin: 10px auto 0;
+      padding: 10px 20px;
+      width: 85%;
+      cursor: pointer;
+      transition: background-position 250ms;
+    }
+    .cool-button:hover,
+    .cool-button:focus {
+      background-position: 100% 100%;
+    }
+    .list-button {
+      width: fit-content;
+      text-decoration: none;
+      margin: 30px 10px 10px;
+    }
+    .list-container {
+      margin: 0 auto;
+      width: 700px;
+      max-width: 100%;
+    }
+    .list-item {
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 5px 5px 20px -10px rgba(115, 115, 115, 1);
+      border-radius: 15px;
+      line-height: 22px;
+    }
+    .item-buttons-container {
+      display: flex;
+      justify-content: right;
+      gap: 15px;
+    }
+    a[href*="uredi"], a[href*="obrisi"] {
+      font-size: 13px;
+      background-color: #e14d2a;
+      color: white;
+      border-radius: 10px;
+      padding: 5px 10px;
+      text-decoration: none;
+    }
+    a[href*="obrisi"] {
+      background-color: #cd104d
+    }
+    .empty-list {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 30px;
+    }
   </style>
   <title>{% block title %}Infoeduka{% endblock %}</title>
 </head>

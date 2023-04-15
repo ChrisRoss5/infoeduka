@@ -10,25 +10,22 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(240, 240, 240);
   }
 
   form {
     width: 300px;
-    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: white;
     border-radius: 15px;
-    padding: 20px;
+    padding: 40px;
     padding-top: 0px;
     align-items: center;
     box-shadow: 15px 15px 42px -12px rgba(115, 115, 115, 1);
   }
 
   #logo {
-    font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,7 +35,7 @@
     background: var(--custombg);
     position: relative;
     border-radius: 15px;
-    top: -20px;
+    top: -40px;
     width: 340px;
   }
 
@@ -49,34 +46,26 @@
     height: 20px;
     border: none;
     border-bottom: 1px solid #ccc;
-    width: 85%;
+    width: 100%;
   }
-  
+
   input:focus {
     outline: none;
   }
-
-  button {
-    background: linear-gradient(339deg, #9c2c77, #cd104d, #e14d2a, transparent) #fd841f;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    padding: 10px 20px;
-    transition: background-color 0.2s;
-    width: 85%;
-  }
-
-  button:hover,
-  button:focus {
-    background: linear-gradient(339deg, #fd841f, #e14d2a, #cd104d, transparent) #9c2c77;
+  label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
   }
 </style>
 <form method="post">
   {% csrf_token %}
   <div id="logo">INFOEDUKA</div>
+  <label>Email:</label>
   <input type="text" name="username" placeholder="E-mail">
+  <label>Lozinka:</label>
   <input type="password" name="password" placeholder="Password">
-  <button>PRIJAVI SE</button>
+  <button class="cool-button">PRIJAVI SE</button>
 </form>
 {% endblock content %}

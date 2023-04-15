@@ -1,27 +1,32 @@
 {% extends 'main/base.html' %}
 {% block content %}
+<div class="list-container">
   {% if not kolegiji %}
-  Nema upisanih kolegija.
+  <div class="empty-list">Nema upisanih kolegija.</div>
   {% endif %}
 
   {% if user.is_staff %}
-  <a href="kolegij/unesi">Unesi kolegij</a>
+  <a href="kolegij/unesi" class="cool-button list-button">Unesi kolegij</a>
   {% endif %}
 
   {% for kolegij in kolegiji %}
-  <div style="border: 1px solid black;">
-    <div>Naziv kolegija: {{ kolegij }}</div>
+  <div class="list-item">
+    Naziv kolegija: {{ kolegij }} <br>
     Predavaci:
     {{ kolegij.predavaci.all|join:", " }}
     {% if user.is_staff %}
-  <a
-    href="kolegij/obrisi/{{kolegij.id}}"
-    onClick="return confirm('Potvrdi brisanje kolegija?')"
-  >Obriši kolegij</a>
-  <a
-    href="kolegij/uredi/{{kolegij.id}}"
-  >Uredi kolegij</a>
-  {% endif %}
+    <div class="item-buttons-container">
+      <a
+        href="kolegij/obrisi/{{kolegij.id}}"
+        onClick="return confirm('Potvrdi brisanje kolegija?')"
+      >Obriši kolegij</a>
+      <a
+        href="kolegij/uredi/{{kolegij.id}}"
+      >Uredi kolegij</a>
+    </div>
+    {% endif %}
   </div>
   {% endfor %}
+
+</div>
 {% endblock content %}

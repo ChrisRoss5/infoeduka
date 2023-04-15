@@ -23,7 +23,15 @@ def obavijesti_nova(request):
             return redirect("/obavijesti")
     else:
         form = ObavijestForm(user=request.user)
-    return render(request, "main/forma.html", {"form": form})
+    return render(
+        request,
+        "main/forma.html",
+        {
+            "form": form,
+            "form_title": "Nova obavijest",
+            "button_action": "Unesi obavijest",
+        },
+    )
 
 
 def predavaci_novi(request):
@@ -37,7 +45,15 @@ def predavaci_novi(request):
             return redirect("/predavaci")
     else:
         form = PredavacForm()
-    return render(request, "main/forma.html", {"form": form})
+    return render(
+        request,
+        "main/forma.html",
+        {
+            "form": form,
+            "form_title": "Novi predavač",
+            "button_action": "Unesi predavača",
+        },
+    )
 
 
 def kolegij_novi(request):
@@ -49,7 +65,15 @@ def kolegij_novi(request):
             return redirect("/kolegiji")
     else:
         form = KolegijForm()
-    return render(request, "main/forma.html", {"form": form})
+    return render(
+        request,
+        "main/forma.html",
+        {
+            "form": form,
+            "form_title": "Novi kolegij",
+            "button_action": "Unesi kolegij",
+        },
+    )
 
 
 def uredi_obavijest(request, id):
@@ -66,7 +90,15 @@ def uredi_obavijest(request, id):
                 return redirect("/obavijesti")
         else:
             form = ObavijestForm(instance=data, user=request.user)
-        return render(request, "main/forma.html", {"form": form})
+        return render(
+            request,
+            "main/forma.html",
+            {
+                "form": form,
+                "form_title": "Uredi obavijest",
+                "button_action": "Spremi promjene",
+            },
+        )
     except Exception as e:
         print(e)
 
@@ -83,7 +115,15 @@ def uredi_kolegij(request, id):
                 return redirect("/kolegiji")
         else:
             form = KolegijForm(instance=data)
-        return render(request, "main/forma.html", {"form": form})
+        return render(
+            request,
+            "main/forma.html",
+            {
+                "form": form,
+                "form_title": "Uredi kolegij",
+                "button_action": "Spremi promjene",
+            },
+        )
     except Exception as e:
         print(e)
 
@@ -103,7 +143,15 @@ def uredi_predavaca(request, id):
     else:
         data.password = ""
         form = PredavacForm(instance=data)
-    return render(request, "main/forma.html", {"form": form})
+    return render(
+        request,
+        "main/forma.html",
+        {
+            "form": form,
+            "form_title": "Uredi predavača",
+            "button_action": "Spremi promjene",
+        },
+    )
 
 
 def kolegiji(request):
