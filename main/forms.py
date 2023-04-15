@@ -9,6 +9,15 @@ class ObavijestForm(forms.ModelForm):
         fields = ["kolegij", "naziv", "opis", "datum_isteka"]
         widgets = {"datum_isteka": forms.DateInput(attrs={"type": "date"})}
 
+    def __init__(self, user=None, *args, **kwargs):
+        super(ObavijestForm, self).__init__(*args, **kwargs)
+
+        if user and not user.is_staff:
+            self.fields["kolegij"].queryset = self.fields["kolegij"].queryset.filter(
+                predavaci__in=[user]
+            )
+
+
 
 class KolegijForm(forms.ModelForm):
     class Meta:
