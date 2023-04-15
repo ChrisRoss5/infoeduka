@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %} {% block content %} {% if not obavijesti %} Nema
-upisanih obavijesti. {% endif %} 
+upisanih obavijesti. {% endif %}
 <a href="/obavijesti-nova">Unesi obavijest</a>
-{% for obavijest in obavijesti reversed %}
+{% for obavijest in obavijesti %}
 <div style="border: 1px solid black">
   Naziv: {{ obavijest.naziv }}<br />
   Opis: {{ obavijest.opis }}<br />
