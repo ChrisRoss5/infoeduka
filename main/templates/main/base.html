@@ -1,54 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/favicon.png"
-      type="image/png"
-    />
-    <!-- TODO! dodati ako bude potrebe -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/favicon.png"
+    type="image/png" />
+  <!-- TODO! dodati ako bude potrebe -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="main.css" /> -->
-    <style>
-      body {
-        margin: 0;
-      }
-      nav {
-        background-color: black;
-      }
-      nav a {
-        text-decoration: none;
-        color: white;
-      }
-    </style>
-    <title>{% block title %}Infoeduka{% endblock %}</title>
-  </head>
-  <body>
-    {% if user.is_authenticated %}
-    <nav>
-      <img
-        src="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/logo-algebra.svg"
-        alt="logo"
-      />
+  <style>
+    body {
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #151515;
+      height: 65px;
+      flex-direction: row;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding-left: 25px;
+    }
+
+    .navigation-logo {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      padding-left: 5px;
+    }
+
+    .name-signout {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      color: white;
+      padding-right: 30px;
+    }
+
+
+
+  </style>
+  <title>{% block title %}Infoeduka{% endblock %}</title>
+</head>
+
+<body>
+  {% if user.is_authenticated %}
+  <nav>
+    <div class="navigation-logo">
+      <a id="button" href="/"><img src="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/logo-algebra.svg"
+          alt="logo" /></a>
       <a href="/obavijesti">Obavijesti</a>
       <a href="/kolegiji">{{ user.is_staff|yesno:"Kolegiji,Moji kolegiji" }}</a>
       <a href="/predavaci">Predavači</a>
-      <div style="float: right; color: white">
-        {% if user.is_authenticated %}
-        <span>{{ user.first_name }} {{ user.last_name }}</span>
-        {% if user.is_staff %}
-        <span>(Administrator)</span>{% else %}<span>(Predavač)</span>
-        {% endif %}
-        <a href="/logout">Odjava</a>
-        {% else %}
-        <a href="/login">Prijava</a>
-        {% endif %}
-      </div>
-    </nav>
-    {% endif %}
-    {% block content %}{% endblock %}
-  </body>
+    </div>
+    <div class="name-signout">
+      {% if user.is_authenticated %}
+      <span>{{ user.first_name }} {{ user.last_name }}</span>
+      {% if user.is_staff %}
+      <span>(Administrator)</span>{% else %}<span>(Predavač)</span>
+      {% endif %}
+      <a href="/logout">Odjava</a>
+      {% else %}
+      <a href="/login">Prijava</a>
+      {% endif %}
+    </div>
+  </nav>
+  {% endif %}
+  {% block content %}{% endblock %}
+</body>
+
 </html>
