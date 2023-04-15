@@ -13,6 +13,7 @@
   <style>
     body {
       margin: 0;
+      --custombg: linear-gradient(339deg, #fd841f 0%, #e14d2a 40%, #cd104d 68%, #9c2c77 100%);
     }
 
     nav {
@@ -27,23 +28,47 @@
     nav a {
       text-decoration: none;
       color: white;
-      padding-left: 25px;
     }
 
-    .navigation-logo {
+    #navigation {
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       display: flex;
       align-items: center;
       padding-left: 5px;
     }
 
-    .name-signout {
+    #name-signout {
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       color: white;
       padding-right: 30px;
     }
 
+    .button {
+      margin-left: 20px;
+      padding: 0 5px 4px;
+      position: relative;
+    }
 
+    .button::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      width: 0%;
+      left: 0;
+      height: 2px;
+      background: var(--custombg);
+      transition: 250ms width, 250ms opacity;
+      opacity: 0;
+    }
+
+    .button:hover::after, .button.active::after {
+      width: 100%;
+      opacity: 1;
+    }
+
+    #admin-color {
+      color: #fd841f;
+    }
 
   </style>
   <title>{% block title %}Infoeduka{% endblock %}</title>
@@ -52,22 +77,20 @@
 <body>
   {% if user.is_authenticated %}
   <nav>
-    <div class="navigation-logo">
-      <a id="button" href="/"><img src="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/logo-algebra.svg"
+    <div id="navigation">
+      <a href="/"><img src="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/logo-algebra.svg"
           alt="logo" /></a>
-      <a href="/obavijesti">Obavijesti</a>
-      <a href="/kolegiji">{{ user.is_staff|yesno:"Kolegiji,Moji kolegiji" }}</a>
-      <a href="/predavaci">Predavači</a>
+          <a href="/obavijesti" class="button {% if "/obavijesti" in request.path %}active{% endif %}">Obavijesti</a>
+          <a href="/kolegiji" class="button {% if "/kolegiji" in request.path %}active{% endif %}">{{ user.is_staff|yesno:"Kolegiji,Moji kolegiji" }}</a>
+          <a href="/predavaci" class="button {% if "/predavaci" in request.path %}active{% endif %}">Predavači</a>
     </div>
-    <div class="name-signout">
+    <div id="name-signout">
       {% if user.is_authenticated %}
       <span>{{ user.first_name }} {{ user.last_name }}</span>
       {% if user.is_staff %}
-      <span>(Administrator)</span>{% else %}<span>(Predavač)</span>
+      <span id="admin-color">(Administrator)</span>{% else %}<span>(Predavač)</span>
       {% endif %}
-      <a href="/logout">Odjava</a>
-      {% else %}
-      <a href="/login">Prijava</a>
+      <a class="button" href="/logout">Odjava</a>
       {% endif %}
     </div>
   </nav>
