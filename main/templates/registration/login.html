@@ -1,11 +1,82 @@
 {% extends 'main/base.html' %}
 {% block content %}
+<style>
+  body,
+  html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(240, 240, 240);
+  }
+
+  form {
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    padding-top: 0px;
+    align-items: center;
+    box-shadow: 15px 15px 42px -12px rgba(115, 115, 115, 1);
+  }
+
+  #logo {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 32px;
+    height: 100px;
+    background: linear-gradient(339deg, rgba(253, 132, 31, 1) 0%, rgba(225, 77, 42, 1) 40%, rgba(205, 16, 77, 1) 68%, rgba(156, 44, 119, 1) 100%);
+    position: relative;
+    border-radius: 15px;
+    top: -20px;
+    width: 340px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 5px;
+    margin-bottom: 20px;
+    height: 20px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 85%;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+
+  button {
+    background: linear-gradient(339deg, #9c2c77, #cd104d, #e14d2a, transparent) #fd841f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px 20px;
+    transition: background-color 0.2s;
+    width: 85%;
+  }
+
+  button:hover,
+  button:focus {
+    background: linear-gradient(339deg, #fd841f, #e14d2a, #cd104d, transparent) #9c2c77;
+  }
+</style>
 <form method="post">
   {% csrf_token %}
-  <label for="username">Email:</label>
-  <input type="text" name="username">
-  <label for="password">Lozinka:</label>
-  <input type="password" name="password">
+  <div id="logo">INFOEDUKA</div>
+  <input type="text" name="username" placeholder="E-mail">
+  <input type="password" name="password" placeholder="Password">
   <button>Prijava</button>
 </form>
 {% endblock content %}
