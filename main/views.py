@@ -60,8 +60,7 @@ def kolegij_novi(request):
     if request.method == "POST":
         form = KolegijForm(request.POST)
         if form.is_valid():
-            kolegij = form.save(commit=False)
-            kolegij.save()
+            form.save()
             return redirect("/kolegiji")
     else:
         form = KolegijForm()
@@ -74,7 +73,6 @@ def kolegij_novi(request):
             "button_action": "Unesi kolegij",
         },
     )
-
 
 def uredi_obavijest(request, id):
     try:

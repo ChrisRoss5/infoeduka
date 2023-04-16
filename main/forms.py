@@ -20,6 +20,7 @@ class ObavijestForm(forms.ModelForm):
 
 
 class KolegijForm(forms.ModelForm):
+    predavaci = forms.ModelMultipleChoiceField(queryset=User.objects.filter(is_staff=False))
     class Meta:
         model = Kolegij
         fields = ["predavaci", "naziv"]
