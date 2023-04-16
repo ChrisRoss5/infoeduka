@@ -11,18 +11,18 @@
 
   {% for kolegij in kolegiji %}
   <div class="list-item">
-    Naziv kolegija: {{ kolegij }} <br>
+    <div class="item-title">{{ kolegij }}</div>
     Predavaci:
     {{ kolegij.predavaci.all|join:", " }}
     {% if user.is_staff %}
     <div class="item-buttons-container">
       <a
+        href="kolegij/uredi/{{kolegij.id}}"
+      >Uredi kolegij</a>
+      <a
         href="kolegij/obrisi/{{kolegij.id}}"
         onClick="return confirm('Potvrdi brisanje kolegija?')"
       >Obriši kolegij</a>
-      <a
-        href="kolegij/uredi/{{kolegij.id}}"
-      >Uredi kolegij</a>
     </div>
     {% endif %}
   </div>

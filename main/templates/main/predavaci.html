@@ -11,17 +11,16 @@
 
   {% for predavac in predavaci %}
   <div class="list-item">
-    Predavač: {{ predavac.first_name }} {{ predavac.last_name }}
-    <br />
+    <div class="item-title"> {{ predavac.first_name }} {{ predavac.last_name }}</div>
     Email: {{ predavac.email }}
     {% if user.is_staff%}
     <div class="item-buttons-container">
+      <a href="predavaci/uredi/{{predavac.id}}">Uredi predavača</a>
       <a
         href="predavaci/obrisi/{{predavac.id}}"
         onClick="return confirm('Potvrdi brisanje obavijesti?')"
         >Obriši predavača</a
       >
-      <a href="predavaci/uredi/{{predavac.id}}">Uredi predavača</a>
     </div>
     {% endif %}
   </div>

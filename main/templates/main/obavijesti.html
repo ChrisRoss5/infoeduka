@@ -9,7 +9,7 @@
 
   {% for obavijest in obavijesti %}
   <div class="list-item">
-    Naziv: {{ obavijest.naziv }}<br />
+    <div class="item-title">{{ obavijest.naziv }}</div>
     Opis: {{ obavijest.opis }}<br />
     Datum objave: {{ obavijest.datum_objave }}<br />
     Datum isteka: {{ obavijest.datum_isteka }}<br />
@@ -18,12 +18,12 @@
     {% if user.is_staff or obavijest.autor == user %}
     <div class="item-buttons-container">
       <a
+        href="obavijesti/uredi/{{obavijest.id}}"
+      >Uredi obavijest</a>
+      <a
         href="obavijesti/obrisi/{{obavijest.id}}"
         onClick="return confirm('Potvrdi brisanje obavijesti?')"
       >Obriši obavijest</a>
-      <a
-        href="obavijesti/uredi/{{obavijest.id}}"
-      >Uredi obavijest</a>
     </div>
     {% endif %}
   </div>

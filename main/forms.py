@@ -29,3 +29,9 @@ class PredavacForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["first_name", "last_name", "email", "password"]
+        widgets = {
+            "first_name": forms.TextInput(attrs={"required": "required"}),
+            "last_name": forms.TextInput(attrs={"required": "required"}),
+            "email": forms.EmailInput(attrs={"required": "required"}),
+            "password": forms.PasswordInput(attrs={"required": "required"}),
+        }

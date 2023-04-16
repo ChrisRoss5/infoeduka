@@ -128,7 +128,7 @@ def uredi_kolegij(request, id):
         print(e)
 
 
-def uredi_predavaca(request, id):
+def uredi_predavaca(request, id):  # TODO! FIX
     data = User.objects.get(id=id)
     if request.method == "POST":
         form = PredavacForm(request.POST)
