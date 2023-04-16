@@ -133,10 +133,10 @@ def uredi_predavaca(request, id):  # TODO! FIX
     if request.method == "POST":
         form = PredavacForm(request.POST)
         if form.is_valid():
-            data.first_name: form.cleaned_data["first_name"]
-            data.last_name: form.cleaned_data["last_name"]
-            data.username: form.cleaned_data["email"]
-            data.email: form.cleaned_data["email"]
+            data.first_name = form.cleaned_data["first_name"]
+            data.last_name = form.cleaned_data["last_name"]
+            data.username = form.cleaned_data["email"]
+            data.email = form.cleaned_data["email"]
             data.set_password(form.cleaned_data["password"])
             data.save()
             return redirect("/predavaci")
