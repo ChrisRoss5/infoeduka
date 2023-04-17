@@ -1,12 +1,8 @@
 {% extends 'main/base.html' %}
 {% block content %}
 <style>
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
   #form-container {
+    margin-top: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,18 +39,6 @@
   }
   #form-body {
     padding: 0 20px 20px 20px;
-  }
-  form input, form select, form textarea {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    border: none;
-    box-sizing: border-box;
-    padding: 5px 14px;
-    outline: none;
-    box-shadow: 1px 1px 10px -5px #7d0000;
-    border-radius: 15px;
-    resize: none;
   }
 </style>
   <div id="form-container">

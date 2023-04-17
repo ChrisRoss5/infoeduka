@@ -9,8 +9,9 @@
 
   {% for obavijest in obavijesti %}
   <div class="list-item">
-    <div class="item-title">{{ obavijest.naziv }}</div>
-    Opis: {{ obavijest.opis }}<br />
+    <div class="item-title">{{ obavijest.naziv }}</div><br>
+    {{ obavijest.opis|linebreaks }}
+    <hr>
     Datum objave: {{ obavijest.datum_objave }}<br />
     Datum isteka: {{ obavijest.datum_isteka }}<br />
     Autor: {{ obavijest.autor }}<br />

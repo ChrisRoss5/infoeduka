@@ -1,5 +1,7 @@
 {
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
-  }
+  },
+  "appService.defaultWebAppToDeploy": "/subscriptions/060a0534-c005-431d-a08e-19322f0cbc34/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/infoeduka",
+  "appService.deploySubpath": "."
 }

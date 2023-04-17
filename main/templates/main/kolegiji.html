@@ -11,8 +11,8 @@
 
   {% for kolegij in kolegiji %}
   <div class="list-item">
-    <div class="item-title">{{ kolegij }}</div>
-    Predavaci:
+    <div class="item-title">{{ kolegij }}</div><br>
+    Predavači:
     {{ kolegij.predavaci.all|join:", " }}
     {% if user.is_staff %}
     <div class="item-buttons-container">

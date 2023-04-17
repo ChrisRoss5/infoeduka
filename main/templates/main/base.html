@@ -5,26 +5,10 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/favicon.png"
+  {% load static %}
+  <link rel="icon" href="{% static 'main/favicon.png' %}"
     type="image/png" />
-  <!-- TODO! dodati ako bude potrebe -->
-  <!-- <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="main.css" /> -->
   <style>
-    /*body {
-      overflow: hidden;
-      outline: 5px solid #151515;
-      animation: 5s transform3d forwards;
-    }
-    @keyframes transform3d {
-      0% {
-        transform: rotate3d(1, 1, 1, 360deg);
-        scale: 0.2;
-      }
-      100% {
-        transform: none
-      }
-    }*/
     body {
       font-family: sans-serif;
       margin: 0;
@@ -32,10 +16,23 @@
       background-color: rgb(240, 240, 240);
       min-height: 100vh;
     }
-    input, select, textarea, button {
+    form input, form select, form textarea {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      border: none;
+      box-sizing: border-box;
+      padding: 5px 14px;
+      outline: none;
+      box-shadow: 1px 1px 10px -5px #7d0000;
+      border-radius: 15px;
+      resize: none;
       font-family: sans-serif;
     }
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -44,12 +41,35 @@
       font-size: 18px;
       flex-direction: row;
     }
+    @media screen and (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      #navigation {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        order: 2;
+      }
+      #navigation > a:first-child {
+        display: none;
+      }
+      #navigation a {
+        margin: 0;
+      }
+      #name-signout {
+        margin-bottom: 25px;
+        font-size: 14px;
+      }
+    }
     nav a {
       text-decoration: none;
       color: white;
     }
     nav img {
       margin-right: 30px;
+      width: 122px;
+      height: 36px;
     }
     .logout {
       position: relative;
@@ -65,23 +85,19 @@
       background: var(--custombg);
       border-radius: 5px;
     }
-
     #navigation {
       font-family: sans-serif;
       display: flex;
       align-items: center;
     }
-
     #name-signout {
       font-family: sans-serif;
       color: white;
     }
-
     .button {
       margin-left: 20px;
       position: relative;
     }
-
     .button::after {
       content: "";
       position: absolute;
@@ -94,16 +110,13 @@
       opacity: 0;
       border-radius: 5px;
     }
-
     .button:hover::after, .button.active::after {
       right: -3px;
       opacity: 1;
     }
-
     #admin-color {
       color: #fd841f;
     }
-
     .cool-button {
       display: block;
       background: linear-gradient(339deg, #fd841f, #e14d2a,#cd104d, #9c2c77, #cd104d, #e14d2a, #fd841f);
@@ -134,7 +147,7 @@
     }
     .list-item {
       position: relative;
-      padding: 45px 20px 20px;
+      padding: 20px;
       margin: 20px 0;
       box-shadow: 5px 5px 20px -10px rgba(115, 115, 115, 1);
       background: #fff;
@@ -142,20 +155,23 @@
       line-height: 22px;
       overflow: hidden;
     }
+    .list-item p {
+      margin: 0;
+    }
     .item-title {
-      display: inline;
+      position: relative;
+      top: -20px;
+      left: -20px;
+      display: inline-block;
       font-weight: bold;
-      margin-bottom: 10px;
       color: white;
       background-color: #e14d2a;
-      position: absolute;
-      top: 0;
-      left: 0;
       padding: 5px 20px;
       border-radius: 0 0 15px 0;
       box-shadow: 5px 5px 20px -10px rgba(115, 115, 115, 1);
     }
     .item-buttons-container {
+      margin-top: 10px;
       display: flex;
       justify-content: right;
       gap: 15px;
@@ -176,7 +192,6 @@
       font-size: 20px;
       margin-top: 30px;
     }
-
   </style>
   <title>{% block title %}Infoeduka{% endblock %}</title>
 </head>
@@ -185,11 +200,10 @@
   {% if user.is_authenticated %}
   <nav>
     <div id="navigation">
-      <a href="/"><img src="https://student.racunarstvo.hr/digitalnareferada/lib/assets/images/logo-algebra.svg"
-          alt="logo" /></a>
-          <a href="/obavijesti" class="button {% if "/obavijesti" in request.path %}active{% endif %}">Obavijesti</a>
-          <a href="/kolegiji" class="button {% if "/kolegiji" in request.path %}active{% endif %}">{{ user.is_staff|yesno:"Kolegiji,Moji kolegiji" }}</a>
-          <a href="/predavaci" class="button {% if "/predavaci" in request.path %}active{% endif %}">Predavači</a>
+      <a href="/"><img src="{% static 'main/logo-algebra.svg' %}" alt="logo" /></a>
+      <a href="/obavijesti" class="button {% if "/obavijesti" in request.path %}active{% endif %}">Obavijesti</a>
+      <a href="/kolegiji" class="button {% if "/kolegiji" in request.path %}active{% endif %}">{{ user.is_staff|yesno:"Kolegiji,Moji kolegiji" }}</a>
+      <a href="/predavaci" class="button {% if "/predavaci" in request.path %}active{% endif %}">Predavači</a>
     </div>
     <div id="name-signout">
       {% if user.is_authenticated %}

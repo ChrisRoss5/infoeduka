@@ -11,7 +11,7 @@
 
   {% for predavac in predavaci %}
   <div class="list-item">
-    <div class="item-title"> {{ predavac.first_name }} {{ predavac.last_name }}</div>
+    <div class="item-title"> {{ predavac.first_name }} {{ predavac.last_name }}</div><br>
     Email: {{ predavac.email }}
     {% if user.is_staff%}
     <div class="item-buttons-container">

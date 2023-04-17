@@ -74,56 +74,51 @@ def kolegij_novi(request):
         },
     )
 
+
 def uredi_obavijest(request, id):
-    try:
-        data = Obavijest.objects.get(id=id)
-        if request.method == "POST":
-            form = ObavijestForm(data=request.POST)
-            if form.is_valid():
-                data.kolegij = form.cleaned_data["kolegij"]
-                data.naziv = form.cleaned_data["naziv"]
-                data.opis = form.cleaned_data["opis"]
-                data.datum_isteka = form.cleaned_data["datum_isteka"]
-                data.save()
-                return redirect("/obavijesti")
-        else:
-            form = ObavijestForm(instance=data, user=request.user)
-        return render(
-            request,
-            "main/forma.html",
-            {
-                "form": form,
-                "form_title": "Uredi obavijest",
-                "button_action": "Spremi promjene",
-            },
-        )
-    except Exception as e:
-        print(e)
+    data = Obavijest.objects.get(id=id)
+    if request.method == "POST":
+        form = ObavijestForm(data=request.POST)
+        if form.is_valid():
+            data.kolegij = form.cleaned_data["kolegij"]
+            data.naziv = form.cleaned_data["naziv"]
+            data.opis = form.cleaned_data["opis"]
+            data.datum_isteka = form.cleaned_data["datum_isteka"]
+            data.save()
+            return redirect("/obavijesti")
+    else:
+        form = ObavijestForm(instance=data, user=request.user)
+    return render(
+        request,
+        "main/forma.html",
+        {
+            "form": form,
+            "form_title": "Uredi obavijest",
+            "button_action": "Spremi promjene",
+        },
+    )
 
 
 def uredi_kolegij(request, id):
-    try:
-        data = Kolegij.objects.get(id=id)
-        if request.method == "POST":
-            form = KolegijForm(request.POST)
-            if form.is_valid():
-                data.predavaci.set(form.cleaned_data["predavaci"])
-                data.naziv = form.cleaned_data["naziv"]
-                data.save()
-                return redirect("/kolegiji")
-        else:
-            form = KolegijForm(instance=data)
-        return render(
-            request,
-            "main/forma.html",
-            {
-                "form": form,
-                "form_title": "Uredi kolegij",
-                "button_action": "Spremi promjene",
-            },
-        )
-    except Exception as e:
-        print(e)
+    data = Kolegij.objects.get(id=id)
+    if request.method == "POST":
+        form = KolegijForm(request.POST)
+        if form.is_valid():
+            data.predavaci.set(form.cleaned_data["predavaci"])
+            data.naziv = form.cleaned_data["naziv"]
+            data.save()
+            return redirect("/kolegiji")
+    else:
+        form = KolegijForm(instance=data)
+    return render(
+        request,
+        "main/forma.html",
+        {
+            "form": form,
+            "form_title": "Uredi kolegij",
+            "button_action": "Spremi promjene",
+        },
+    )
 
 
 def uredi_predavaca(request, id):  # TODO! FIX
