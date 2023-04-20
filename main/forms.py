@@ -1,13 +1,18 @@
 from django import forms
 from main.models import Obavijest, Kolegij
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 
 class ObavijestForm(forms.ModelForm):
     class Meta:
         model = Obavijest
         fields = ["kolegij", "naziv", "opis", "datum_isteka"]
-        widgets = {"datum_isteka": forms.DateInput(attrs={"type": "date"})}
+        widgets = {
+            "datum_isteka": forms.DateInput(
+                attrs={"type": "date", "min": now().strftime("%Y-%m-%d")},
+            )
+        }
 
     def __init__(self, user=None, *args, **kwargs):
         super(ObavijestForm, self).__init__(*args, **kwargs)
@@ -18,9 +23,11 @@ class ObavijestForm(forms.ModelForm):
             )
 
 
-
 class KolegijForm(forms.ModelForm):
-    predavaci = forms.ModelMultipleChoiceField(queryset=User.objects.filter(is_staff=False))
+    predavaci = forms.ModelMultipleChoiceField(
+        queryset=User.objects.filter(is_staff=False)
+    )
+
     class Meta:
         model = Kolegij
         fields = ["predavaci", "naziv"]

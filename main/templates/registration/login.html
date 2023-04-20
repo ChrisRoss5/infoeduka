@@ -56,6 +56,9 @@
     color: #555;
     letter-spacing: 1px;
   }
+  #error {
+    color: red;
+  }
 </style>
 <form method="post">
   {% csrf_token %}
@@ -64,6 +67,9 @@
   <input type="text" name="username">
   <label>Lozinka:</label>
   <input type="password" name="password">
+  {% if form.errors %}
+    <label id="error">Korisničko ime ili lozinka nisu ispravni!</label>
+  {% endif %}
   <button class="cool-button">PRIJAVI SE</button>
 </form>
 <div id="authors">Izradili: Matej Galić, Edi Graovac, Ante Prskalo, Kristijan	Rosandić | 2023</div>

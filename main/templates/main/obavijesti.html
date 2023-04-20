@@ -1,30 +1,31 @@
-{% extends 'main/base.html' %}
-{% block content %}
+{% extends 'main/base.html' %} {% block content %}
 <div class="list-container">
   {% if not obavijesti %}
   <div class="empty-list">Nema upisanih obavijesti.</div>
   {% endif %}
 
-  <a href="/obavijesti-nova" class="cool-button list-button">Unesi obavijest</a>
+  <a href="/obavijesti/unesi" class="cool-button list-button"
+    >Unesi obavijest</a
+  >
 
   {% for obavijest in obavijesti %}
   <div class="list-item">
-    <div class="item-title">{{ obavijest.naziv }}</div><br>
+    <div class="item-title">{{ obavijest.naziv }}</div>
+    <br />
     {{ obavijest.opis|linebreaks }}
-    <hr>
+    <hr />
     Datum objave: {{ obavijest.datum_objave }}<br />
     Datum isteka: {{ obavijest.datum_isteka }}<br />
     Autor: {{ obavijest.autor }}<br />
     Kolegij: {{ obavijest.kolegij }}<br />
     {% if user.is_staff or obavijest.autor == user %}
     <div class="item-buttons-container">
-      <a
-        href="obavijesti/uredi/{{obavijest.id}}"
-      >Uredi obavijest</a>
+      <a href="obavijesti/uredi/{{obavijest.id}}">Uredi obavijest</a>
       <a
         href="obavijesti/obrisi/{{obavijest.id}}"
         onClick="return confirm('Potvrdi brisanje obavijesti?')"
-      >Obriši obavijest</a>
+        >Obriši obavijest</a
+      >
     </div>
     {% endif %}
   </div>

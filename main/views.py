@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, time, timedelta
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -8,9 +8,23 @@ from .forms import ObavijestForm, KolegijForm, PredavacForm
 
 def obavijesti(request):
     obavijesti = Obavijest.objects.filter(
-        datum_isteka__gte=datetime.datetime.now()
+        datum_isteka__gte=datetime.combine(datetime.now(), time.min)
     ).order_by("-datum_objave")
     return render(request, "main/obavijesti.html", {"obavijesti": obavijesti})
+
+
+def kolegiji(request):
+    kolegiji = (
+        Kolegij.objects.filter(predavaci=request.user)
+        if not request.user.is_staff
+        else Kolegij.objects.all()
+    )
+    return render(request, "main/kolegiji.html", {"kolegiji": kolegiji})
+
+
+def predavaci(request):
+    predavaci = User.objects.filter(is_staff=False)
+    return render(request, "main/predavaci.html", {"predavaci": predavaci})
 
 
 def obavijesti_nova(request):
@@ -145,20 +159,6 @@ def uredi_predavaca(request, id):  # TODO! FIX
             "button_action": "Spremi promjene",
         },
     )
-
-
-def kolegiji(request):
-    kolegiji = (
-        Kolegij.objects.filter(predavaci=request.user)
-        if not request.user.is_staff
-        else Kolegij.objects.all()
-    )
-    return render(request, "main/kolegiji.html", {"kolegiji": kolegiji})
-
-
-def predavaci(request):
-    predavaci = User.objects.filter(is_staff=False)
-    return render(request, "main/predavaci.html", {"predavaci": predavaci})
 
 
 def obrisi_obavijest(request, id):
