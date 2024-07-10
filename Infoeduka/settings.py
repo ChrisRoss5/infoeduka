@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,8 +31,12 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "192.168.0.17",
     "infoeduka.azurewebsites.net",
+    "infoeduka.oa.r.appspot.com",
 ]
-CSRF_TRUSTED_ORIGINS = ["https://infoeduka.azurewebsites.net"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://infoeduka.azurewebsites.net",
+    "https://infoeduka.oa.r.appspot.com",
+]
 
 # Application definition
 
@@ -81,10 +86,21 @@ WSGI_APPLICATION = "Infoeduka.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+INIT_DB_PATH = BASE_DIR / "init-db.sqlite3"
+if os.getenv("GAE_ENV") == "standard":
+    DB_PATH = os.path.join('/tmp', 'db.sqlite3')
+else:
+    DB_PATH = BASE_DIR / "tmp" / "db.sqlite3"
+try:
+    from shutil import copyfile
+
+    copyfile(INIT_DB_PATH, DB_PATH)
+except:
+    pass
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": DB_PATH,
     }
 }
 
@@ -138,4 +154,5 @@ LOGIN_REQUIRED_URLS = (r"/(.*)$",)
 LOGIN_REQUIRED_URLS_EXCEPTIONS = (
     r"/login(.*)$",
     r"/logout(.*)$",
+    r"/check-permissions(.*)$",
 )

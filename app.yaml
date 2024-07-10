@@ -1,0 +1,11 @@
+runtime: python310
+env: standard
+entrypoint: gunicorn -b :$PORT Infoeduka.wsgi
+
+handlers:
+- url: /static
+  static_dir: staticfiles/
+
+- url: /.*
+  script: auto
+

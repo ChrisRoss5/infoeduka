@@ -1,3 +1,32 @@
+# App deployed on GCP, App Engine
+
+[https://infoeduka.oa.r.appspot.com/](https://infoeduka.oa.r.appspot.com/)
+
+| EMAIL ADDRESS      | STAFF STATUS | PASSWORD |
+| ------------------ | ------------ | -------- |
+| admin1@admin.com   | Yes          | 1        |
+| predavac1@user.com | No           | 1        |
+
+### About deployment
+
+Steps to deploy a Django app with an SQLite database to the App Engine standard environment:
+1. add `app.yaml` to root
+2. update `settings.py`
+3. run `gcloud app deploy`
+
+The key is to have `init-db.sqlite3` deployed to the App Engine `/tmp` directory, which is writable.
+This allows for a prepopulated database that resets with each new instance.
+Instances can scale down to zero when not in use.
+The `init-db.sqlite3` file contains only the user data as shown above.
+
+### Azure DevOps
+
+[Infoeduka Project](https://dev.azure.com/PRA23-Tim5/_git/Infoeduka%20project)
+
+---
+
+⬇ _Original README_ ⬇
+
 ## Instalacija
 
 Potreban je Python 3.8 ili noviji za Django 4.2. Više na: [How to install Django](https://docs.djangoproject.com/en/4.2/topics/install/)
@@ -12,11 +41,14 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
+
 Nakon dodavanja modela potrebno je napraviti migraciju i spremiti ju u bazu podataka:
+
 ```
 python manage.py makemigrations
 python manage.py migrate
 ```
+
 Nakon izmjene modela najlakše je izbrisati bazu i migracije te započeti iznova.
 
 ## Korisnici
@@ -53,7 +85,3 @@ User.objects.create_user(username="predavac1@user.com", email="predavac1@user.co
 ```
 python manage.py createsuperuser
 ```
-
-## TODO
-
-Prije završetka/objave treba pregledati "TODO!" komentare.
