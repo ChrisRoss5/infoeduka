@@ -1,6 +1,6 @@
 # App deployed on GCP, App Engine
 
-### [https://infoeduka.oa.r.appspot.com/](https://infoeduka.oa.r.appspot.com/)
+### https://infoeduka.oa.r.appspot.com/
 
 | EMAIL ADDRESS      | PASSWORD | STAFF STATUS |
 | ------------------ | -------- | ------------ |
@@ -21,7 +21,7 @@ The `init-db.sqlite3` file contains only the user data as shown above.
 
 ### Azure DevOps
 
-[Infoeduka Project](https://dev.azure.com/PRA23-Tim5/_git/Infoeduka%20project)
+https://dev.azure.com/PRA23-Tim5/_git/Infoeduka%20project
 
 ---
 
