@@ -1,11 +1,11 @@
 # App deployed on GCP, App Engine
 
-[https://infoeduka.oa.r.appspot.com/](https://infoeduka.oa.r.appspot.com/)
+### [https://infoeduka.oa.r.appspot.com/](https://infoeduka.oa.r.appspot.com/)
 
-| EMAIL ADDRESS      | STAFF STATUS | PASSWORD |
-| ------------------ | ------------ | -------- |
-| admin1@admin.com   | Yes          | 1        |
-| predavac1@user.com | No           | 1        |
+| EMAIL ADDRESS      | PASSWORD | STAFF STATUS |
+| ------------------ | -------- | ------------ |
+| admin1@admin.com   | 1        | Yes          |
+| predavac1@user.com | 1        | No           |
 
 ### About deployment
 
