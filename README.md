@@ -6,7 +6,7 @@
 
 ### https://infoeduka.oa.r.appspot.com
 
-**IMPORTANT: Startup may take up to a 10s due to cold start.**
+**IMPORTANT: Startup may take up to 10s due to cold start.**
 
 | EMAIL ADDRESS      | PASSWORD | STAFF STATUS |
 | ------------------ | -------- | ------------ |
