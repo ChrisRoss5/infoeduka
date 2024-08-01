@@ -32,10 +32,12 @@ ALLOWED_HOSTS = [
     "192.168.0.17",
     "infoeduka.azurewebsites.net",
     "infoeduka.oa.r.appspot.com",
+    "infoeduka.k1k1.dev",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://infoeduka.azurewebsites.net",
     "https://infoeduka.oa.r.appspot.com",
+    "https://infoeduka.k1k1.dev",
 ]
 
 # Application definition
@@ -86,6 +88,7 @@ WSGI_APPLICATION = "Infoeduka.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# For GCP App Engine:
 INIT_DB_PATH = BASE_DIR / "init-db.sqlite3"
 if os.getenv("GAE_ENV") == "standard":
     DB_PATH = os.path.join('/tmp', 'db.sqlite3')

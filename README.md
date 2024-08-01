@@ -1,18 +1,27 @@
 # App deployed on GCP, App Engine
 
-### https://infoeduka.oa.r.appspot.com/
+### https://infoeduka.k1k1.dev
+
+-- OR --
+
+### https://infoeduka.oa.r.appspot.com
+
+**IMPORTANT: Startup may take up to a 10s due to cold start.**
 
 | EMAIL ADDRESS      | PASSWORD | STAFF STATUS |
 | ------------------ | -------- | ------------ |
 | admin1@admin.com   | 1        | Yes          |
 | predavac1@user.com | 1        | No           |
 
+Visit `/admin` to access Django admin interface.
+
 ### About deployment
 
 Steps to deploy a Django app with an SQLite database to the App Engine standard environment:
 1. add `app.yaml` to root
-2. update `settings.py`
-3. run `gcloud app deploy`
+2. update `settings.py`: allowed hosts, trusted origins and database initialization
+3. run `python manage.py collectstatic`
+4. run `gcloud app deploy`
 
 The key is to have `init-db.sqlite3` deployed to the App Engine `/tmp` directory, which is writable.
 This allows for a prepopulated database that resets with each new instance.
